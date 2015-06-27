@@ -35,15 +35,32 @@ public class GameField extends World
         // выставляем первый ход у человека
         currentBoard  = humanBoard;
         
+        //humanBoard.test();
         // создаем корабли на поле человека
-        humanBoard.createShip(3);
+     
         humanBoard.createShip(4);
+        humanBoard.createShip(3);
+        humanBoard.createShip(3);
         humanBoard.createShip(2);
+        humanBoard.createShip(2);
+        humanBoard.createShip(2);
+        humanBoard.createShip(1);
+        humanBoard.createShip(1);
+        humanBoard.createShip(1);
+        humanBoard.createShip(1);
+        
         
         // создаем корабли на поле компьютера
-        computerBoard.createShip(3);
         computerBoard.createShip(4);
+        computerBoard.createShip(3);
+        computerBoard.createShip(3);
         computerBoard.createShip(2);
+        computerBoard.createShip(2);
+        computerBoard.createShip(2);
+        computerBoard.createShip(1);
+        computerBoard.createShip(1);
+        computerBoard.createShip(1);
+        computerBoard.createShip(1);
         
         // отрисовываем поля человека и компьютера
         drawBoard(humanBoard);
@@ -75,7 +92,7 @@ public class GameField extends World
     public void drawCell (Board board, int x, int y)
     {
         
-       // вычисляем отступы. Они разые для разных полей 
+       // вычисляем отступы. Они разные для разных полей 
        final  int LEFT_X = (board == humanBoard) ? LEFT_X_HUMAN_BOARD : LEFT_X_COMPUTER_BOARD;
        final  int TOP_Y  = (board == humanBoard) ? TOP_Y_HUMAN_BOARD : TOP_Y_COMPUTER_BOARD;
      
@@ -91,9 +108,11 @@ public class GameField extends World
     //отрисовка i-го корабля
     public void drawShip(Board board, int shipID)
     {
-        int sizeOfShip = humanBoard.ships[shipID].size;
+        if (humanBoard.ships[shipID] == null) { System.out.println("null"); return; }
+        int sizeOfShip = board.ships[shipID].size;
         for (int i = 0; i< sizeOfShip; i++) 
           {
+            if (humanBoard.ships[shipID].cells == null) { System.out.println("null2"); return; }
             drawShipCell(board,
                     board.ships[shipID].cells[i].X, 
                     board.ships[shipID].cells[i].Y);

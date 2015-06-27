@@ -16,13 +16,22 @@ public class Ship extends Actor
      * Act - do whatever the Ship wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    Ship(int size, int X, int Y) {
+    Ship(int size, int X, int Y, Side side) {
+        
           for (int i = 0; i < size; i++)
             {
-            Cell myCell = new Cell (X+i, Y);
+                Cell myCell;
+                if (side == Side.HORIZONTAL) {
+                         myCell = new Cell (X+i, Y);
+                    } else 
+                    {
+                         myCell = new Cell (X, Y+i);
+                    }
+      
             cells [i] = myCell;
            
             }
+        
             this.size = size;
             this.status = ShipStatusList.ALIVE;
             
